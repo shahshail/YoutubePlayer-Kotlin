@@ -12,7 +12,9 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         recycler_view.layoutManager = LinearLayoutManager(this)
-        recycler_view.adapter =
+        recycler_view.adapter = MainAdapter()
+
+
 
     }
 }
