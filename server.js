@@ -25,3 +25,20 @@ var program_name = process.argv[0];
 var script_path = process.argv[1];
 var port_string = process.argv[2];
 var env_value = process.argv[3];
+
+if(env_value === "undefined"){
+    console.log("env_value is not set..");
+    return -1;
+} else {
+    switch(env_value){
+        case "DEV" : 
+            mongodbURL = "mongodb://localhost:27017/YoutubePlayerBackend";
+            console.log("environment = " + mongodbURL);
+            break;
+
+        default:
+            console.log("env_value is not valid: " + env_value);
+            return -1;
+
+    }
+}
