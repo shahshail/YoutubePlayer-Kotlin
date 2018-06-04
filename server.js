@@ -42,3 +42,14 @@ if(env_value === "undefined"){
 
     }
 }
+
+//Check if port is 9898(Default) if not then ask user to change port forwarding on router admin.
+var port_number = "9898";// Default port number
+if(typeof port_string != "undefined" && port_string.length> 0){
+    if(port_string !== "9898"){
+        console.log("The default Listining port is 9898. if you want to use custome port then change your routers port forwarding settings.");
+    }
+    port_number = port_string; 
+}
+
+
