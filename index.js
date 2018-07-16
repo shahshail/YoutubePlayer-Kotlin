@@ -4,7 +4,7 @@ const cbDebugger = require('debug')('app:db')
 //const config = require('config');
 const helmet = require('helmet')
 const morgan = require('morgan');
-// const genres = require('./routes/genres');
+ const users = require('./routes/users');
 // const customers = require('./routes/customers');
 // const movies = require('./routes/movies');
 // const customer = require('./routes/customers'); 
@@ -21,7 +21,7 @@ mongoose.connect('mongodb://localhost/kotlinYoutubePlayer')
 
 app.use(helmet())
 app.use(express.json());
-// app.use('/api/genres', genres);
+ app.use('/api/users', users);
 // app.use('/api/customers', customers);
 // app.use('/api/movies', movies);
 
