@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/shahshail/YoutubePlayer-Kotlin#readme",
   "dependencies": {
+    "body-parser": "^1.18.3",
     "express": "^4.16.3",
     "helmet": "^3.12.1",
     "joi": "^13.4.0",

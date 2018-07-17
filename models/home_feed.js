@@ -1,6 +1,27 @@
 const Joi = require('joi');
 const mongoose = require('mongoose');
-const {userSchema} = require('./user');
+
+const user = new mongoose.Schema({
+    id :{
+        type: Number,
+        required : true,
+        minlength : 1,
+        maxlength : 100
+    },
+    name : {
+      type : String,
+      required: true,
+      minlength: 5,
+      maxlength: 50
+    },
+    username : {
+        type : String,
+        required: true,
+        minlength: 5,
+        maxlength: 50
+      }
+  });
+
 
 //Channel Schema
 const ChannelSchema = new mongoose.Schema({
@@ -48,7 +69,7 @@ const Videos = new mongoose.Schema({
         minlength : 3,
         maxlength : 500
     },
-    numberOfSubscriber : {
+    numberOfViews : {
         type : Number,
         minlength : 1,
         maxlength : 100000,
@@ -66,7 +87,7 @@ const Videos = new mongoose.Schema({
 
 const HomeFeed = mongoose.model('HomeFeed', new mongoose.Schema({
     user : {
-        type : userSchema,
+        type : user,
         required : true
     },
     videos : [{

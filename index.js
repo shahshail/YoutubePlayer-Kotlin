@@ -6,7 +6,7 @@ const helmet = require('helmet')
 const morgan = require('morgan');
  const users = require('./routes/users');
 // const customers = require('./routes/customers');
-// const movies = require('./routes/movies');
+ const homefeed = require('./routes/home_feed');
 // const customer = require('./routes/customers'); 
 const express = require('express');
 const app = express();
@@ -22,7 +22,7 @@ mongoose.connect('mongodb://localhost/kotlinYoutubePlayer')
 app.use(helmet())
 app.use(express.json());
  app.use('/api/users', users);
-// app.use('/api/customers', customers);
+ app.use('/api/home_feed', homefeed);
 // app.use('/api/movies', movies);
 
 app.get('/',(req, res) => {
