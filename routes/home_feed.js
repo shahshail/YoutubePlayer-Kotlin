@@ -43,9 +43,9 @@ router.delete('/:id',async (req, res) => {
   res.send(user);
 });
 
-router.get('/:id', async (req, res) => {
+router.get('/:username', async (req, res) => {
 
- const user = await User.findById(req.param.id);
+ const user = await User.findOne({"username" : req.param.user.username});
   if (!user) return res.status(404).send('The user with the given ID was not found.');
   res.send(user);
 });
