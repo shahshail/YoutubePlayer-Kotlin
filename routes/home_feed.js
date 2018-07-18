@@ -43,11 +43,12 @@ router.delete('/:id',async (req, res) => {
   res.send(user);
 });
 
-router.get('/:username', async (req, res) => {
+router.get('/find', async (req, res) => {
 
- const user = await User.findOne({"username" : req.param.user.username});
-  if (!user) return res.status(404).send('The user with the given ID was not found.');
-  res.send(user);
+  console.log(req.query)
+  const homefeed = await HomeFeed.findOne(req.query);
+   if (!homefeed) return res.status(404).send('The user with the given username was not found.');
+   res.send(homefeed);
 });
 
 

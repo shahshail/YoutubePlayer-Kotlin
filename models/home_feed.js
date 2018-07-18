@@ -20,7 +20,7 @@ const user = new mongoose.Schema({
         minlength: 5,
         maxlength: 50
       }
-  });
+  },{_id : false});
 
 
 //Channel Schema
