@@ -4,7 +4,9 @@ import android.app.Application
 import android.content.Context
 import io.reactivex.Scheduler
 import io.reactivex.schedulers.Schedulers
-
+/**
+ * Created by Shail Shah on 07/22/18.
+ */
 class AppController : Application() {
    // private userServices : UserServices;
     private lateinit var scheduler : Scheduler
