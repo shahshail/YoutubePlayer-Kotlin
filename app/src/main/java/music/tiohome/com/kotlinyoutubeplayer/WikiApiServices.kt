@@ -12,7 +12,7 @@ interface WikiApiServices {
     fun hitCountCheck(@Query("action") action: String,
                       @Query("format") format: String,
                       @Query("list") list: String,
-                      @Query("srsearch") srsearch: String): Observable<Model.Result>
+                         @Query("srsearch") srsearch: String): Observable<Model.Result>
 
     companion object {
         fun create(): WikiApiServices {
