@@ -4,42 +4,45 @@ import android.app.Application
 import android.content.Context
 import io.reactivex.Scheduler
 import io.reactivex.schedulers.Schedulers
+import music.tiohome.com.kotlinyoutubeplayer.network.ApiFactory
+import music.tiohome.com.kotlinyoutubeplayer.network.UsersServices
+
 /**
  * Created by Shail Shah on 07/22/18.
  */
 class AppController : Application() {
-   // private userServices : UserServices;
-    private lateinit var scheduler : Scheduler
 
-    private operator fun get(context: Context): AppController {
-        return context.applicationContext as AppController
-    }
+    var userService: UsersServices? = null
+        get() {
+            if (field == null) {
+                userService = ApiFactory.create()
+            }
 
-    fun create(context: Context): AppController {
-        return get(context)
-    }
-
-    fun getUserService(): UsersService {
-        if (usersService == null) {
-            usersService = ApiFactory.create()
+            return field
         }
-
-        return usersService
-    }
+    private var scheduler: Scheduler? = null
 
     fun subscribeScheduler(): Scheduler {
         if (scheduler == null) {
             scheduler = Schedulers.io()
         }
 
-        return scheduler
-    }
-
-    fun setUserService(usersService: UsersService) {
-        this.usersService = usersService
+        return scheduler!!
     }
 
     fun setScheduler(scheduler: Scheduler) {
         this.scheduler = scheduler
     }
+
+    companion object {
+
+        private operator fun get(context: Context): AppController {
+            return context.applicationContext as AppController
+        }
+
+        fun create(context: Context): AppController {
+            return AppController[context]
+        }
+    }
+
 }
