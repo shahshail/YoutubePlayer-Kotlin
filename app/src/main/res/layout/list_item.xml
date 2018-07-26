@@ -1,7 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<android.support.v7.widget.CardView xmlns:app="http://schemas.android.com/apk/res-auto"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <import type="android.view.View" />
+
+
+        <variable
+            name="userViewModel"
+            type="music.tiohome.com.kotlinyoutubeplayer.viewModels.ItemUserViewModel"/>
+    </data>
+<android.support.v7.widget.CardView
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginLeft="8dp"
@@ -9,7 +19,9 @@
     android:layout_marginTop="@dimen/cardview_default_elevation"
     android:layout_marginBottom="@dimen/cardview_default_elevation"
     android:elevation="@dimen/cardview_default_elevation"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    android:onClick="@{userViewModel::onItemClick}"
+    android:background="?attr/selectableItemBackground"
+    android:foreground="?android:attr/selectableItemBackground">
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
@@ -23,18 +35,20 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:src="@mipmap/ic_launcher"
+            tools:imageUrl="@{userViewModel.profileBanner}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/circleImageView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
+            tools:imageUrl="@{userViewModel.profileThumb}"
             android:src="@mipmap/ic_launcher_round"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -47,7 +61,7 @@
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:text="Demo Title"
+            android:text="@{userViewModel.courseTitle}"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/circleImageView"
@@ -60,7 +74,7 @@
             android:layout_marginBottom="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
-            android:text="Demo Sub title"
+            android:text="@{userViewModel.courseSubtitle}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/circleImageView" />
@@ -69,3 +83,4 @@
 
 
 </android.support.v7.widget.CardView>
+</layout>
