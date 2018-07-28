@@ -1,6 +1,7 @@
 package music.tiohome.com.kotlinyoutubeplayer.model
 
 import android.arch.persistence.room.Entity
+import android.arch.persistence.room.PrimaryKey
 
 /**
  * Class which provides a model for post
@@ -18,9 +19,15 @@ data class Result(
 )
 data class User(val id : Int, val name: String, val username: String)
 
-@Entity
+@Entity(tableName = "course")
+data class Videos(@field:PrimaryKey val id : Int,
+                  val name: String,
+                  val link : String,
+                  val imageUrl : String,
+                  val numberOfViews:Int,
+                  val channel: Channel)
 
-data class Videos(val id : Int, val name: String, val link : String, val imageUrl : String, val numberOfViews:Int, val channel: Channel)
-
-data class Channel(val name: String, val profileImageUrl : String, val numberOfSubscribers : Int)
+data class Channel(val name: String,
+                   val profileImageUrl : String,
+                   val numberOfSubscribers : Int)
 
