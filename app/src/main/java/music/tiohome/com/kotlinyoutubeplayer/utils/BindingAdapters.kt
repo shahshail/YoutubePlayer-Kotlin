@@ -35,5 +35,6 @@ fun setMutableText(view:TextView, text : MutableLiveData<String>){
 
 @BindingAdapter("image")
 fun setImage(imageView: ImageView, imageURL: String?){
+    if(imageURL != null && imageURL!!.isNotEmpty())
     Picasso.get().load(imageURL).fit().centerCrop().into(imageView)
 }

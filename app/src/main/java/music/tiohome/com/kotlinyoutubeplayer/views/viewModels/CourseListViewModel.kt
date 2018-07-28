@@ -11,6 +11,7 @@ import music.tiohome.com.kotlinyoutubeplayer.BaseViewModel
 import music.tiohome.com.kotlinyoutubeplayer.R
 import music.tiohome.com.kotlinyoutubeplayer.model.CourseDao
 import music.tiohome.com.kotlinyoutubeplayer.model.Result
+import music.tiohome.com.kotlinyoutubeplayer.model.User
 import music.tiohome.com.kotlinyoutubeplayer.network.CourseApi
 import music.tiohome.com.kotlinyoutubeplayer.views.adapters.CourseListAdapter
 import javax.inject.Inject
@@ -38,7 +39,7 @@ class CourseListViewModel(private val courseDao: CourseDao) : BaseViewModel() {
     }
 
     private fun loadPost(){
-        disposable = Observable.fromCallable { (courseDao.all) }
+        disposable = Observable.fromCallable { courseDao.all }
                 .concatMap {
                     dbPostList ->
                     if(dbPostList.isEmpty())
@@ -47,16 +48,15 @@ class CourseListViewModel(private val courseDao: CourseDao) : BaseViewModel() {
                             Observable.just(apiPostList)
                         }
                     else
-                        Observable.just(dbPostList)
+                        Observable.just(Result(id = 0,user = User(0, name = "",username = ""), videos = dbPostList))
                 }
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe { onRetrieveCourseListStart() }
                 .doOnTerminate { onRetrieveCourseListFinish() }
                 .subscribe(
-                        // Add result
-                        { result -> onRetrieveCourseListSuccess(result as Result) },
-                        { error -> onRetrieveCourseListError(error) }
+                        { result -> onRetrieveCourseListSuccess(result) },
+                        { err -> onRetrieveCourseListError(err) }
                 )
     }
 

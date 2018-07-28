@@ -9,6 +9,9 @@ interface CourseDao {
     @get:Query("SELECT * FROM course")
     val all : List<Videos>
 
+
+
     @Insert
     fun insertAll(vararg videos: Videos)
+
 }

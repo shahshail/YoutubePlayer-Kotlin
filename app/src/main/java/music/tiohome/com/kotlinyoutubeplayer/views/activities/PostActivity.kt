@@ -13,7 +13,7 @@ import music.tiohome.com.kotlinyoutubeplayer.R
 import music.tiohome.com.kotlinyoutubeplayer.databinding.ActivityUserListBinding
 import music.tiohome.com.kotlinyoutubeplayer.views.viewModels.CourseListViewModel
 
-class CourseActivity : AppCompatActivity(){
+class PostActivity : AppCompatActivity(){
 
     private lateinit var binding : ActivityUserListBinding
     private lateinit var viewModel:CourseListViewModel
