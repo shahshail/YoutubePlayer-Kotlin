@@ -1,27 +1,28 @@
 package music.tiohome.com.kotlinyoutubeplayer.views.viewModels
 
 import android.arch.lifecycle.MutableLiveData
+import android.util.Log
 import android.view.View
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import music.tiohome.com.kotlinyoutubeplayer.BaseViewModel
 import music.tiohome.com.kotlinyoutubeplayer.R
-import music.tiohome.com.kotlinyoutubeplayer.model.Post
-import music.tiohome.com.kotlinyoutubeplayer.network.PostApi
-import music.tiohome.com.kotlinyoutubeplayer.views.adapters.PostListAdapter
+import music.tiohome.com.kotlinyoutubeplayer.model.Result
+import music.tiohome.com.kotlinyoutubeplayer.network.CourseApi
+import music.tiohome.com.kotlinyoutubeplayer.views.adapters.CourseListAdapter
 import javax.inject.Inject
 
 class PostListViewModel : BaseViewModel(){
 
     @Inject
-    lateinit var postApi: PostApi
+    lateinit var postApi: CourseApi
 
     private lateinit var disposable: Disposable
     val loadingVisibility: MutableLiveData<Int> = MutableLiveData()
     val errorMessage:MutableLiveData<Int> = MutableLiveData()
     val errorClickListener = View.OnClickListener { loadPost() }
-    val postListAdapter: PostListAdapter = PostListAdapter()
+    val courseListAdapter: CourseListAdapter = CourseListAdapter()
 
 
     init {
@@ -35,34 +36,36 @@ class PostListViewModel : BaseViewModel(){
     }
 
     private fun loadPost(){
-        disposable = postApi.getPosts()
+        disposable = postApi.getCourses()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .doOnSubscribe { onRetrievePostListStart() }
-                .doOnTerminate { onRetrievePostListFinish() }
+                .doOnSubscribe { onRetrieveCourseListStart() }
+                .doOnTerminate { onRetrieveCourseListFinish() }
                 .subscribe(
                         // Add result
-                        { result -> onRetrievePostListSuccess(result) },
-                        { onRetrievePostListError() }
+                        { result -> onRetrieveCourseListSuccess(result) },
+                        { error -> onRetrieveCourseListError(error) }
                 )
     }
 
 
-    private fun onRetrievePostListStart(){
+    private fun onRetrieveCourseListStart(){
         loadingVisibility.value = View.VISIBLE
         errorMessage.value = null
     }
 
-    private fun onRetrievePostListFinish(){
+    private fun onRetrieveCourseListFinish(){
         loadingVisibility.value = View.GONE
     }
 
-    private fun onRetrievePostListSuccess(post: List<Post>){
-        postListAdapter.updatePostList(post)
+    private fun onRetrieveCourseListSuccess(post: Result){
+        courseListAdapter.updatePostList(post.videos)
+        Log.w("class",post.toString())
     }
 
-    private fun onRetrievePostListError(){
+    private fun onRetrieveCourseListError(error: Throwable){
         errorMessage.value = R.string.post_error
+        Log.w("class",error.message)
     }
 
 }
