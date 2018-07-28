@@ -3,17 +3,19 @@ package music.tiohome.com.kotlinyoutubeplayer.views.viewModels
 import android.arch.lifecycle.MutableLiveData
 import android.util.Log
 import android.view.View
+import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import music.tiohome.com.kotlinyoutubeplayer.BaseViewModel
 import music.tiohome.com.kotlinyoutubeplayer.R
+import music.tiohome.com.kotlinyoutubeplayer.model.CourseDao
 import music.tiohome.com.kotlinyoutubeplayer.model.Result
 import music.tiohome.com.kotlinyoutubeplayer.network.CourseApi
 import music.tiohome.com.kotlinyoutubeplayer.views.adapters.CourseListAdapter
 import javax.inject.Inject
 
-class PostListViewModel : BaseViewModel(){
+class CourseListViewModel(private val courseDao: CourseDao) : BaseViewModel() {
 
     @Inject
     lateinit var postApi: CourseApi
@@ -36,14 +38,24 @@ class PostListViewModel : BaseViewModel(){
     }
 
     private fun loadPost(){
-        disposable = postApi.getCourses()
+        disposable = Observable.fromCallable { (courseDao.all) }
+                .concatMap {
+                    dbPostList ->
+                    if(dbPostList.isEmpty())
+                        postApi.getCourses().concatMap {
+                            apiPostList -> courseDao.insertAll(*apiPostList.videos.toTypedArray())
+                            Observable.just(apiPostList)
+                        }
+                    else
+                        Observable.just(dbPostList)
+                }
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe { onRetrieveCourseListStart() }
                 .doOnTerminate { onRetrieveCourseListFinish() }
                 .subscribe(
                         // Add result
-                        { result -> onRetrieveCourseListSuccess(result) },
+                        { result -> onRetrieveCourseListSuccess(result as Result) },
                         { error -> onRetrieveCourseListError(error) }
                 )
     }

@@ -4,7 +4,7 @@ import android.arch.lifecycle.ViewModel
 import music.tiohome.com.kotlinyoutubeplayer.Di.component.DaggerViewModelInjector
 import music.tiohome.com.kotlinyoutubeplayer.Di.component.ViewModelInjector
 import music.tiohome.com.kotlinyoutubeplayer.Di.module.NetworkModule
-import music.tiohome.com.kotlinyoutubeplayer.views.viewModels.PostListViewModel
+import music.tiohome.com.kotlinyoutubeplayer.views.viewModels.CourseListViewModel
 
 abstract class BaseViewModel:ViewModel(){
     private val injector: ViewModelInjector = DaggerViewModelInjector
@@ -21,7 +21,7 @@ abstract class BaseViewModel:ViewModel(){
      */
     private fun inject() {
         when (this) {
-            is PostListViewModel -> injector.inject(this)
+            is CourseListViewModel -> injector.inject(this)
         }
     }
 }

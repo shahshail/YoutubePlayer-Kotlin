@@ -8,14 +8,15 @@ import android.support.annotation.StringRes
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
+import music.tiohome.com.kotlinyoutubeplayer.Di.ViewModelFactory
 import music.tiohome.com.kotlinyoutubeplayer.R
 import music.tiohome.com.kotlinyoutubeplayer.databinding.ActivityUserListBinding
-import music.tiohome.com.kotlinyoutubeplayer.views.viewModels.PostListViewModel
+import music.tiohome.com.kotlinyoutubeplayer.views.viewModels.CourseListViewModel
 
-class PostActivity : AppCompatActivity(){
+class CourseActivity : AppCompatActivity(){
 
     private lateinit var binding : ActivityUserListBinding
-    private lateinit var viewModel:PostListViewModel
+    private lateinit var viewModel:CourseListViewModel
     private var errorSnackbar: Snackbar? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,7 +25,7 @@ class PostActivity : AppCompatActivity(){
         binding = DataBindingUtil.setContentView(this, R.layout.activity_user_list)
         binding.postList.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
 
-        viewModel = ViewModelProviders.of(this).get(PostListViewModel::class.java)
+        viewModel = ViewModelProviders.of(this, ViewModelFactory(this)).get(CourseListViewModel::class.java)
 
         viewModel.errorMessage.observe(this, Observer {
             errorMessage -> if(errorMessage != null) showError(errorMessage) else hideError()

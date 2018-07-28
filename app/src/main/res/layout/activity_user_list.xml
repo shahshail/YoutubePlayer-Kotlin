@@ -8,7 +8,7 @@
     <data>
         <variable
             name="viewModel"
-            type="music.tiohome.com.kotlinyoutubeplayer.views.viewModels.PostListViewModel" />
+            type="music.tiohome.com.kotlinyoutubeplayer.views.viewModels.CourseListViewModel" />
     </data>
 
     <android.support.constraint.ConstraintLayout
