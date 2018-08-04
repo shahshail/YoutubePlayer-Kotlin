@@ -13,7 +13,7 @@ const app = express();
  app.set('view engine','pug');
  app.set('views','./views'); // default location where all the views are stored
 
-mongoose.connect('mongodb://kotlinyoutubeuser:AndroidKotlin9898@ds127439.mlab.com:27439/kotlinyoutubeylayer')
+mongoose.connect('mongodb://kotlinyoutubeuser:AndroidKotlin9898@ds127439.mlab.com:27439/')
 .then(() => console.log('connected to MongoDB...'))
 .catch(err => console.error('Could not connect to MongoDB...'))
 
