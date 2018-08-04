@@ -2,4 +2,6 @@
     <string name="app_name">KotlinYoutubePlayer</string>
     <string name="error_message_loading_users">There seems to have been some error.</string>
     <string name="default_message_loading_users">Press the button to load Courses!</string>
+    <string name="retry">Retry</string>
+    <string name="post_error">An error occurred while loading the Courses</string>v
 </resources>

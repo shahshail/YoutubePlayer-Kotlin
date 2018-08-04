@@ -4,7 +4,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.Reusable
 import io.reactivex.schedulers.Schedulers
-import music.tiohome.com.kotlinyoutubeplayer.network.PostApi
+import music.tiohome.com.kotlinyoutubeplayer.network.CourseApi
 import music.tiohome.com.kotlinyoutubeplayer.utils.BASE_URL
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
@@ -20,8 +20,8 @@ object NetworkModule {
     @Provides
     @Reusable
     @JvmStatic
-    internal fun providePostApi(retrofit: Retrofit) : PostApi{
-        return retrofit.create(PostApi::class.java)
+    internal fun provideCourseApi(retrofit: Retrofit) : CourseApi{
+        return retrofit.create(CourseApi::class.java)
     }
 
     @Provides
