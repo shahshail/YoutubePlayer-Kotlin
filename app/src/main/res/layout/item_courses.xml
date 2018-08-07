@@ -51,29 +51,32 @@
                 android:layout_height="20dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginLeft="10dp"
+                android:layout_marginRight="8dp"
                 android:layout_marginStart="10dp"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="16dp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintHorizontal_bias="1.0"
+                android:textColor="#000000"
                 app:layout_constraintStart_toEndOf="@+id/circleImageView"
                 app:layout_constraintTop_toBottomOf="@+id/iv_clip_board"
-                app:mutableText="@{viewModel.getCourseTitle()}"
-                android:layout_marginRight="8dp" />
+                app:mutableText="@{viewModel.getCourseTitle()}" />
 
             <TextView
                 android:id="@+id/tv_sub_title"
                 android:layout_width="0dp"
-                android:layout_height="36dp"
-                android:layout_marginBottom="16dp"
+                android:layout_height="22dp"
+                android:layout_marginBottom="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="8dp"
                 android:layout_marginStart="10dp"
+                android:layout_marginTop="8dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toEndOf="@+id/circleImageView"
+                app:layout_constraintTop_toBottomOf="@+id/tv_main_title"
                 app:mutableText="@{viewModel.getSubViewInfo()}" />
         </android.support.constraint.ConstraintLayout>
 
