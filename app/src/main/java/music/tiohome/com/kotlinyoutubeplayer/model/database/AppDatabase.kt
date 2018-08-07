@@ -5,7 +5,8 @@ import android.arch.persistence.room.RoomDatabase
 import music.tiohome.com.kotlinyoutubeplayer.model.CourseDao
 import music.tiohome.com.kotlinyoutubeplayer.model.Videos
 
-@Database(entities = arrayOf(Videos::class), version = 2)
+@Database(entities = [(Videos::class)], version = 1)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun courseDao(): CourseDao
+
 }
