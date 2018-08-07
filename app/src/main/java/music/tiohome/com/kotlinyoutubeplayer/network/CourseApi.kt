@@ -6,6 +6,6 @@ import retrofit2.http.GET
 
 interface CourseApi {
 
-    @GET("home_feed")
+    @GET("find?user.username=shahshail")
     fun getCourses() : Observable<Result>
 }

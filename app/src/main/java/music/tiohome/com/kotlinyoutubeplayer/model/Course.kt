@@ -20,7 +20,7 @@ data class Result(
 )
 data class User(val id : Int, val name: String, val username: String)
 
-@Entity(tableName = "course")
+@Entity(tableName = "courses_db")
 data class Videos(@field:PrimaryKey var id : Int,
                   var name: String,
                   var link : String,

@@ -6,7 +6,7 @@ import android.arch.persistence.room.Query
 
 @Dao
 interface CourseDao {
-    @get:Query("SELECT * FROM course")
+    @get:Query("SELECT * FROM courses_db")
     val all : List<Videos>
 
 
