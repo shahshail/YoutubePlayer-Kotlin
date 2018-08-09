@@ -1,6 +1,6 @@
 ## MVVM-Architecture Components(Data-Binding, Room, ViewModel, LiveData), Dagger2, Retrofit and RxAndroid and Backend in NodeJS with mongodb hosted on Raspberry-Pi-3 at home.
 
-### Android app:
+### Android app
 - Clean MVVM architecture with ViewModel and LiveData Library.
 - Display Courses from REST API/JSON file using Retrofit2+RxJava2+Dagger2.
 - Room persistence library for storing data for offline access.
@@ -12,5 +12,8 @@
 
 - API Endpoint: https://shailshah.app/api/home_feed
 - Note : If you can not access above endpoint then it might be a power-cut or Raspberry-Pi stopped, Please try again after few hours.
+
+### Screenshot
+
 
 ### This REPO is under construction..
