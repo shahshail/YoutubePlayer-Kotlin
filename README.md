@@ -14,6 +14,7 @@
 - Note : If you can not access above endpoint then it might be a power-cut or Raspberry-Pi stopped, Please try again after few hours.
 
 ### Screenshot
-
+#### Main Screen
+![atp txt](https://github.com/shahshail/YoutubePlayer-Kotlin/blob/master/screenshot1.png)
 
 ### This REPO is under construction..
